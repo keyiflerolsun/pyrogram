@@ -166,7 +166,7 @@ chatPhotoEmpty#37c1011c = ChatPhoto;
 chatPhoto#1c6e1c11 flags:# has_video:flags.0?true photo_id:long stripped_thumb:flags.1?bytes dc_id:int = ChatPhoto;
 
 messageEmpty#90a6ca84 flags:# id:int peer_id:flags.0?Peer = Message;
-message#95ef6f2b flags:# out:flags.1?true mentioned:flags.4?true media_unread:flags.5?true silent:flags.13?true post:flags.14?true from_scheduled:flags.18?true legacy:flags.19?true edit_hide:flags.21?true pinned:flags.24?true noforwards:flags.26?true invert_media:flags.27?true flags2:# offline:flags2.1?true video_processing_pending:flags2.4?true paid_suggested_post_stars:flags2.8?true paid_suggested_post_ton:flags2.9?true id:int from_id:flags.8?Peer from_boosts_applied:flags.29?int from_rank:flags2.12?string peer_id:Peer saved_peer_id:flags.28?Peer fwd_from:flags.2?MessageFwdHeader via_bot_id:flags.11?long via_business_bot_id:flags2.0?long guestchat_via_from:flags2.19?Peer reply_to:flags.3?MessageReplyHeader date:int message:string media:flags.9?MessageMedia reply_markup:flags.6?ReplyMarkup entities:flags.7?Vector<MessageEntity> views:flags.10?int forwards:flags.10?int replies:flags.23?MessageReplies edit_date:flags.15?int post_author:flags.16?string grouped_id:flags.17?long reactions:flags.20?MessageReactions restriction_reason:flags.22?Vector<RestrictionReason> ttl_period:flags.25?int quick_reply_shortcut_id:flags.30?int effect:flags2.2?long factcheck:flags2.3?FactCheck report_delivery_until_date:flags2.5?int paid_message_stars:flags2.6?long suggested_post:flags2.7?SuggestedPost schedule_repeat_period:flags2.10?int summary_from_language:flags2.11?string = Message;
+message#7600b9d3 flags:# out:flags.1?true mentioned:flags.4?true media_unread:flags.5?true silent:flags.13?true post:flags.14?true from_scheduled:flags.18?true legacy:flags.19?true edit_hide:flags.21?true pinned:flags.24?true noforwards:flags.26?true invert_media:flags.27?true flags2:# offline:flags2.1?true video_processing_pending:flags2.4?true paid_suggested_post_stars:flags2.8?true paid_suggested_post_ton:flags2.9?true id:int from_id:flags.8?Peer from_boosts_applied:flags.29?int from_rank:flags2.12?string peer_id:Peer saved_peer_id:flags.28?Peer fwd_from:flags.2?MessageFwdHeader via_bot_id:flags.11?long via_business_bot_id:flags2.0?long guestchat_via_from:flags2.19?Peer reply_to:flags.3?MessageReplyHeader date:int message:string media:flags.9?MessageMedia reply_markup:flags.6?ReplyMarkup entities:flags.7?Vector<MessageEntity> views:flags.10?int forwards:flags.10?int replies:flags.23?MessageReplies edit_date:flags.15?int post_author:flags.16?string grouped_id:flags.17?long reactions:flags.20?MessageReactions restriction_reason:flags.22?Vector<RestrictionReason> ttl_period:flags.25?int quick_reply_shortcut_id:flags.30?int effect:flags2.2?long factcheck:flags2.3?FactCheck report_delivery_until_date:flags2.5?int paid_message_stars:flags2.6?long suggested_post:flags2.7?SuggestedPost schedule_repeat_period:flags2.10?int summary_from_language:flags2.11?string rich_message:flags2.13?RichMessage = Message;
 messageService#7a800e0a flags:# out:flags.1?true mentioned:flags.4?true media_unread:flags.5?true reactions_are_possible:flags.9?true silent:flags.13?true post:flags.14?true legacy:flags.19?true id:int from_id:flags.8?Peer peer_id:Peer saved_peer_id:flags.28?Peer reply_to:flags.3?MessageReplyHeader date:int action:MessageAction reactions:flags.20?MessageReactions ttl_period:flags.25?int = Message;
 
 messageMediaEmpty#3ded6320 = MessageMedia;
@@ -612,6 +612,8 @@ sendMessageChooseStickerAction#b05ac6b1 = SendMessageAction;
 sendMessageEmojiInteraction#25972bcb emoticon:string msg_id:int interaction:DataJSON = SendMessageAction;
 sendMessageEmojiInteractionSeen#b665902e emoticon:string = SendMessageAction;
 sendMessageTextDraftAction#376d975c random_id:long text:TextWithEntities = SendMessageAction;
+inputSendMessageRichMessageDraftAction#e2b23b51 random_id:long rich_message:InputRichMessage = SendMessageAction;
+sendMessageRichMessageDraftAction#a2cb24f9 random_id:long rich_message:RichMessage = SendMessageAction;
 
 contacts.found#b3134d9d my_results:Vector<Peer> results:Vector<Peer> chats:Vector<Chat> users:Vector<User> = contacts.Found;
 
@@ -843,6 +845,7 @@ inputBotInlineMessageMediaContact#a6edbffd flags:# phone_number:string first_nam
 inputBotInlineMessageGame#4b425864 flags:# reply_markup:flags.2?ReplyMarkup = InputBotInlineMessage;
 inputBotInlineMessageMediaInvoice#d7e78225 flags:# title:string description:string photo:flags.0?InputWebDocument invoice:Invoice payload:bytes provider:string provider_data:DataJSON reply_markup:flags.2?ReplyMarkup = InputBotInlineMessage;
 inputBotInlineMessageMediaWebPage#bddcc510 flags:# invert_media:flags.3?true force_large_media:flags.4?true force_small_media:flags.5?true optional:flags.6?true message:string entities:flags.1?Vector<MessageEntity> url:string reply_markup:flags.2?ReplyMarkup = InputBotInlineMessage;
+inputBotInlineMessageRichMessage#b43df56c flags:# reply_markup:flags.2?ReplyMarkup rich_message:InputRichMessage = InputBotInlineMessage;
 
 inputBotInlineResult#88bf9319 flags:# id:string type:string title:flags.1?string description:flags.2?string url:flags.3?string thumb:flags.4?InputWebDocument content:flags.5?InputWebDocument send_message:InputBotInlineMessage = InputBotInlineResult;
 inputBotInlineResultPhoto#a8d864a7 id:string type:string photo:InputPhoto send_message:InputBotInlineMessage = InputBotInlineResult;
@@ -856,6 +859,7 @@ botInlineMessageMediaVenue#8a86659c flags:# geo:GeoPoint title:string address:st
 botInlineMessageMediaContact#18d1cdc2 flags:# phone_number:string first_name:string last_name:string vcard:string reply_markup:flags.2?ReplyMarkup = BotInlineMessage;
 botInlineMessageMediaInvoice#354a9b09 flags:# shipping_address_requested:flags.1?true test:flags.3?true title:string description:string photo:flags.0?WebDocument currency:string total_amount:long reply_markup:flags.2?ReplyMarkup = BotInlineMessage;
 botInlineMessageMediaWebPage#809ad9a6 flags:# invert_media:flags.3?true force_large_media:flags.4?true force_small_media:flags.5?true manual:flags.7?true safe:flags.8?true message:string entities:flags.1?Vector<MessageEntity> url:string reply_markup:flags.2?ReplyMarkup = BotInlineMessage;
+botInlineMessageRichMessage#a617e7b flags:# reply_markup:flags.2?ReplyMarkup rich_message:RichMessage = BotInlineMessage;
 
 botInlineResult#11965f3a flags:# id:string type:string title:flags.1?string description:flags.2?string url:flags.3?string thumb:flags.4?WebDocument content:flags.5?WebDocument send_message:BotInlineMessage = BotInlineResult;
 botInlineMediaResult#17db940b flags:# id:string type:string photo:flags.0?Photo document:flags.1?Document title:flags.2?string description:flags.3?string send_message:BotInlineMessage = BotInlineResult;
@@ -915,7 +919,7 @@ contacts.topPeers#70b772a8 categories:Vector<TopPeerCategoryPeers> chats:Vector<
 contacts.topPeersDisabled#b52c939d = contacts.TopPeers;
 
 draftMessageEmpty#1b0c841a flags:# date:flags.0?int = DraftMessage;
-draftMessage#96eaa5eb flags:# no_webpage:flags.1?true invert_media:flags.6?true reply_to:flags.4?InputReplyTo message:string entities:flags.3?Vector<MessageEntity> media:flags.5?InputMedia date:int effect:flags.7?long suggested_post:flags.8?SuggestedPost = DraftMessage;
+draftMessage#60fe3294 flags:# no_webpage:flags.1?true invert_media:flags.6?true reply_to:flags.4?InputReplyTo message:string entities:flags.3?Vector<MessageEntity> media:flags.5?InputMedia date:int effect:flags.7?long suggested_post:flags.8?SuggestedPost rich_message:flags.9?RichMessage = DraftMessage;
 
 messages.featuredStickersNotModified#c6dc0c66 count:int = messages.FeaturedStickers;
 messages.featuredStickers#be382906 flags:# premium:flags.0?true hash:long count:int sets:Vector<StickerSetCovered> unread:Vector<long> = messages.FeaturedStickers;
@@ -963,6 +967,19 @@ textMarked#34b8621 text:RichText = RichText;
 textPhone#1ccb966a text:RichText phone:string = RichText;
 textImage#81ccf4f document_id:long w:int h:int = RichText;
 textAnchor#35553762 text:RichText name:string = RichText;
+textMath#9d2eac97 source:string = RichText;
+textCustomEmoji#a26156c0 document_id:long alt:string = RichText;
+textSpoiler#4c2a5d62 text:RichText = RichText;
+textMention#cd24cf44 text:RichText = RichText;
+textHashtag#519524ea text:RichText = RichText;
+textBotCommand#2ff29d3 text:RichText = RichText;
+textCashtag#7b9e1801 text:RichText = RichText;
+textAutoUrl#ac6a83aa text:RichText = RichText;
+textAutoEmail#c556a45d text:RichText = RichText;
+textAutoPhone#24c26789 text:RichText = RichText;
+textBankCard#b956812d text:RichText = RichText;
+textMentionName#1a9fbfc text:RichText user_id:long = RichText;
+textDate#a5b45e2b flags:# relative:flags.0?true short_time:flags.1?true long_time:flags.2?true short_date:flags.3?true long_date:flags.4?true day_of_week:flags.5?true text:RichText date:int = RichText;
 
 pageBlockUnsupported#13567e8a = PageBlock;
 pageBlockTitle#70abc3fd text:RichText = PageBlock;
@@ -978,8 +995,8 @@ pageBlockAnchor#ce0d37b0 name:string = PageBlock;
 pageBlockList#e4e88011 items:Vector<PageListItem> = PageBlock;
 pageBlockBlockquote#263d7c26 text:RichText caption:RichText = PageBlock;
 pageBlockPullquote#4f4456d3 text:RichText caption:RichText = PageBlock;
-pageBlockPhoto#1759c560 flags:# photo_id:long caption:PageCaption url:flags.0?string webpage_id:flags.0?long = PageBlock;
-pageBlockVideo#7c8fe7b6 flags:# autoplay:flags.0?true loop:flags.1?true video_id:long caption:PageCaption = PageBlock;
+pageBlockPhoto#1759c560 flags:# spoiler:flags.1?true photo_id:long caption:PageCaption url:flags.0?string webpage_id:flags.0?long = PageBlock;
+pageBlockVideo#7c8fe7b6 flags:# autoplay:flags.0?true loop:flags.1?true spoiler:flags.2?true video_id:long caption:PageCaption = PageBlock;
 pageBlockCover#39f23300 cover:PageBlock = PageBlock;
 pageBlockEmbed#a8718dc5 flags:# full_width:flags.0?true allow_scrolling:flags.3?true url:flags.1?string html:flags.2?string poster_photo_id:flags.4?long w:flags.5?int h:flags.5?int caption:PageCaption = PageBlock;
 pageBlockEmbedPost#f259a80b url:string webpage_id:long author_photo_id:long author:string date:int blocks:Vector<PageBlock> caption:PageCaption = PageBlock;
@@ -989,10 +1006,20 @@ pageBlockChannel#ef1751b5 channel:Chat = PageBlock;
 pageBlockAudio#804361ea audio_id:long caption:PageCaption = PageBlock;
 pageBlockKicker#1e148390 text:RichText = PageBlock;
 pageBlockTable#bf4dea82 flags:# bordered:flags.0?true striped:flags.1?true title:RichText rows:Vector<PageTableRow> = PageBlock;
-pageBlockOrderedList#9a8ae1e1 items:Vector<PageListOrderedItem> = PageBlock;
+pageBlockOrderedList#1fd6f6c1 flags:# reversed:flags.2?true items:Vector<PageListOrderedItem> start:flags.0?int type:flags.1?string = PageBlock;
 pageBlockDetails#76768bed flags:# open:flags.0?true blocks:Vector<PageBlock> title:RichText = PageBlock;
 pageBlockRelatedArticles#16115a96 title:RichText articles:Vector<PageRelatedArticle> = PageBlock;
 pageBlockMap#a44f3ef6 geo:GeoPoint zoom:int w:int h:int caption:PageCaption = PageBlock;
+pageBlockHeading1#baff072f text:RichText = PageBlock;
+pageBlockHeading2#96b2aec text:RichText = PageBlock;
+pageBlockHeading3#67e731ad text:RichText = PageBlock;
+pageBlockHeading4#b532772b text:RichText = PageBlock;
+pageBlockHeading5#dbbe6c6a text:RichText = PageBlock;
+pageBlockHeading6#682a41a9 text:RichText = PageBlock;
+pageBlockMath#59080c20 source:string = PageBlock;
+pageBlockThinking#3c29a3e2 text:RichText = PageBlock;
+inputPageBlockMap#574b617f geo:InputGeoPoint zoom:int w:int h:int caption:PageCaption = PageBlock;
+pageBlockBlockquoteBlocks#e6e47c4 blocks:Vector<PageBlock> caption:RichText = PageBlock;
 
 phoneCallDiscardReasonMissed#85e42301 = PhoneCallDiscardReason;
 phoneCallDiscardReasonDisconnect#e095c1a0 = PhoneCallDiscardReason;
@@ -1269,11 +1296,11 @@ pageTableRow#e0c0c5e5 cells:Vector<PageTableCell> = PageTableRow;
 
 pageCaption#6f747657 text:RichText credit:RichText = PageCaption;
 
-pageListItemText#b92fb6cd text:RichText = PageListItem;
-pageListItemBlocks#25e073fc blocks:Vector<PageBlock> = PageListItem;
+pageListItemText#2f58683c flags:# checkbox:flags.0?true checked:flags.1?true text:RichText = PageListItem;
+pageListItemBlocks#63ca67aa flags:# checkbox:flags.0?true checked:flags.1?true blocks:Vector<PageBlock> = PageListItem;
 
-pageListOrderedItemText#5e068047 num:string text:RichText = PageListOrderedItem;
-pageListOrderedItemBlocks#98dd8936 num:string blocks:Vector<PageBlock> = PageListOrderedItem;
+pageListOrderedItemText#15031189 flags:# checkbox:flags.0?true checked:flags.1?true num:flags.2?string text:RichText value:flags.3?int type:flags.4?string = PageListOrderedItem;
+pageListOrderedItemBlocks#8ff2d5f0 flags:# checkbox:flags.0?true checked:flags.1?true num:flags.2?string blocks:Vector<PageBlock> value:flags.3?int type:flags.4?string = PageListOrderedItem;
 
 pageRelatedArticle#b390dc08 flags:# url:string webpage_id:long title:flags.0?string description:flags.1?string photo_id:flags.2?long author:flags.3?string published_date:flags.4?int = PageRelatedArticle;
 
@@ -1433,7 +1460,7 @@ messages.messageViews#b6c4f543 views:Vector<MessageViews> chats:Vector<Chat> use
 
 messages.discussionMessage#a6341782 flags:# messages:Vector<Message> max_id:flags.0?int read_inbox_max_id:flags.1?int read_outbox_max_id:flags.2?int unread_count:int chats:Vector<Chat> users:Vector<User> = messages.DiscussionMessage;
 
-messageReplyHeader#1b97dd66 flags:# reply_to_scheduled:flags.2?true forum_topic:flags.3?true quote:flags.9?true reply_to_msg_id:flags.4?int reply_to_peer_id:flags.0?Peer reply_from:flags.5?MessageFwdHeader reply_media:flags.8?MessageMedia reply_to_top_id:flags.1?int quote_text:flags.6?string quote_entities:flags.7?Vector<MessageEntity> quote_offset:flags.10?int todo_item_id:flags.11?int poll_option:flags.12?bytes = MessageReplyHeader;
+messageReplyHeader#1b97dd66 flags:# reply_to_scheduled:flags.2?true forum_topic:flags.3?true quote:flags.9?true reply_to_ephemeral:flags.13?true reply_to_msg_id:flags.4?int reply_to_peer_id:flags.0?Peer reply_from:flags.5?MessageFwdHeader reply_media:flags.8?MessageMedia reply_to_top_id:flags.1?int quote_text:flags.6?string quote_entities:flags.7?Vector<MessageEntity> quote_offset:flags.10?int todo_item_id:flags.11?int poll_option:flags.12?bytes = MessageReplyHeader;
 messageReplyStoryHeader#e5af939 peer:Peer story_id:int = MessageReplyHeader;
 
 messageReplies#83d60fc2 flags:# comments:flags.0?true replies:int replies_pts:int recent_repliers:flags.1?Vector<Peer> channel_id:flags.0?long max_id:flags.2?int read_max_id:flags.3?int = MessageReplies;
@@ -1562,7 +1589,7 @@ attachMenuBots#3c4301c0 hash:long bots:Vector<AttachMenuBot> users:Vector<User> 
 
 attachMenuBotsBot#93bf667f bot:AttachMenuBot users:Vector<User> = AttachMenuBotsBot;
 
-webViewResultUrl#4d22ff98 flags:# fullsize:flags.1?true fullscreen:flags.2?true query_id:flags.0?long url:string = WebViewResult;
+webViewResultUrl#4d22ff98 flags:# fullsize:flags.1?true fullscreen:flags.2?true same_origin:flags.3?true query_id:flags.0?long url:string = WebViewResult;
 
 webViewMessageSent#c94511c flags:# msg_id:flags.0?InputBotInlineMessageID = WebViewMessageSent;
 
@@ -2220,7 +2247,7 @@ aiComposeToneExample#f1d628ec from:TextWithEntities to:TextWithEntities = AiComp
 bots.accessSettings#dd1fbf93 flags:# restricted:flags.0?true add_users:flags.1?Vector<User> = bots.AccessSettings;
 
 messages.chatInviteJoinResultOk#445663a7 updates:Updates = messages.ChatInviteJoinResult;
-messages.chatInviteJoinResultWebView#774bbdf4 bot_id:long url:string query_id:long users:Vector<User> = messages.ChatInviteJoinResult;
+messages.chatInviteJoinResultWebView#2f51c337 bot_id:long webview:WebViewResult users:Vector<User> = messages.ChatInviteJoinResult;
 
 joinChatBotResultApproved#ae152a69 = JoinChatBotResult;
 joinChatBotResultDeclined#efa0194 = JoinChatBotResult;
@@ -2231,6 +2258,12 @@ webDomainException#933ca597 flags:# domain:string url:string title:string favico
 
 account.webBrowserSettingsNotModified#c31c8f4e = account.WebBrowserSettings;
 account.webBrowserSettings#79eb8cb3 flags:# open_external_browser:flags.0?true display_close_button:flags.1?true external_exceptions:Vector<WebDomainException> inapp_exceptions:Vector<WebDomainException> hash:long = account.WebBrowserSettings;
+
+richMessage#baf39d8b flags:# rtl:flags.0?true part:flags.1?true blocks:Vector<PageBlock> photos:Vector<Photo> documents:Vector<Document> = RichMessage;
+
+inputRichMessage#e4c449fc flags:# rtl:flags.0?true noautolink:flags.1?true blocks:Vector<PageBlock> photos:flags.2?Vector<InputPhoto> documents:flags.3?Vector<InputDocument> users:flags.4?Vector<InputUser> = InputRichMessage;
+inputRichMessageHTML#d4eab551 flags:# rtl:flags.0?true noautolink:flags.1?true html:string photos:flags.2?Vector<InputPhoto> documents:flags.3?Vector<InputDocument> users:flags.4?Vector<InputUser> = InputRichMessage;
+inputRichMessageMarkdown#9ac8186 flags:# rtl:flags.0?true noautolink:flags.1?true markdown:string photos:flags.2?Vector<InputPhoto> documents:flags.3?Vector<InputDocument> users:flags.4?Vector<InputUser> = InputRichMessage;
 
 ---functions---
 
@@ -2399,7 +2432,7 @@ account.deletePasskey#f5b5563f id:string = Bool;
 account.confirmBotConnection#67ed1f68 bot_id:InputUser = Bool;
 account.getWebBrowserSettings#56655768 hash:long = account.WebBrowserSettings;
 account.updateWebBrowserSettings#9adf82fe flags:# open_external_browser:flags.0?true display_close_button:flags.1?true = account.WebBrowserSettings;
-account.toggleWebBrowserSettingsException#2d0a0571 flags:# delete:flags.1?true open_external_browser:flags.0?Bool url:string = Bool;
+account.toggleWebBrowserSettingsException#60ed4229 flags:# delete:flags.1?true open_external_browser:flags.0?Bool url:string = Updates;
 account.deleteWebBrowserSettingsExceptions#86a0765d = account.WebBrowserSettings;
 
 users.getUsers#d91a548 id:Vector<InputUser> = Vector<User>;
@@ -2419,7 +2452,7 @@ contacts.deleteByPhones#1013fd9e phones:Vector<string> = Bool;
 contacts.block#2e2e8734 flags:# my_stories_from:flags.0?true id:InputPeer = Bool;
 contacts.unblock#b550d328 flags:# my_stories_from:flags.0?true id:InputPeer = Bool;
 contacts.getBlocked#9a868f80 flags:# my_stories_from:flags.0?true offset:int limit:int = contacts.Blocked;
-contacts.search#11f812d8 q:string limit:int = contacts.Found;
+contacts.search#5f58d0f flags:# broadcasts:flags.0?true bots:flags.1?true q:string limit:int = contacts.Found;
 contacts.resolveUsername#725afbbc flags:# username:string referer:flags.0?string = contacts.ResolvedPeer;
 contacts.getTopPeers#973478b6 flags:# correspondents:flags.0?true bots_pm:flags.1?true bots_inline:flags.2?true phone_calls:flags.3?true forward_users:flags.4?true forward_chats:flags.5?true groups:flags.10?true channels:flags.15?true bots_app:flags.16?true bots_guestchat:flags.17?true offset:int limit:int hash:long = contacts.TopPeers;
 contacts.resetTopPeerRating#1ae373ac category:TopPeerCategory peer:InputPeer = Bool;
@@ -2448,7 +2481,7 @@ messages.deleteHistory#b08f922a flags:# just_clear:flags.0?true revoke:flags.1?t
 messages.deleteMessages#e58e95d2 flags:# revoke:flags.0?true id:Vector<int> = messages.AffectedMessages;
 messages.receivedMessages#5a954c0 max_id:int = Vector<ReceivedNotifyMessage>;
 messages.setTyping#58943ee2 flags:# peer:InputPeer top_msg_id:flags.0?int action:SendMessageAction = Bool;
-messages.sendMessage#545cd15a flags:# no_webpage:flags.1?true silent:flags.5?true background:flags.6?true clear_draft:flags.7?true noforwards:flags.14?true update_stickersets_order:flags.15?true invert_media:flags.16?true allow_paid_floodskip:flags.19?true peer:InputPeer reply_to:flags.0?InputReplyTo message:string random_id:long reply_markup:flags.2?ReplyMarkup entities:flags.3?Vector<MessageEntity> schedule_date:flags.10?int schedule_repeat_period:flags.24?int send_as:flags.13?InputPeer quick_reply_shortcut:flags.17?InputQuickReplyShortcut effect:flags.18?long allow_paid_stars:flags.21?long suggested_post:flags.22?SuggestedPost = Updates;
+messages.sendMessage#fef48f62 flags:# no_webpage:flags.1?true silent:flags.5?true background:flags.6?true clear_draft:flags.7?true noforwards:flags.14?true update_stickersets_order:flags.15?true invert_media:flags.16?true allow_paid_floodskip:flags.19?true peer:InputPeer reply_to:flags.0?InputReplyTo message:string random_id:long reply_markup:flags.2?ReplyMarkup entities:flags.3?Vector<MessageEntity> schedule_date:flags.10?int schedule_repeat_period:flags.24?int send_as:flags.13?InputPeer quick_reply_shortcut:flags.17?InputQuickReplyShortcut effect:flags.18?long allow_paid_stars:flags.21?long suggested_post:flags.22?SuggestedPost rich_message:flags.23?InputRichMessage = Updates;
 messages.sendMedia#330e77f flags:# silent:flags.5?true background:flags.6?true clear_draft:flags.7?true noforwards:flags.14?true update_stickersets_order:flags.15?true invert_media:flags.16?true allow_paid_floodskip:flags.19?true peer:InputPeer reply_to:flags.0?InputReplyTo media:InputMedia message:string random_id:long reply_markup:flags.2?ReplyMarkup entities:flags.3?Vector<MessageEntity> schedule_date:flags.10?int schedule_repeat_period:flags.24?int send_as:flags.13?InputPeer quick_reply_shortcut:flags.17?InputQuickReplyShortcut effect:flags.18?long allow_paid_stars:flags.21?long suggested_post:flags.22?SuggestedPost = Updates;
 messages.forwardMessages#13704a7c flags:# silent:flags.5?true background:flags.6?true with_my_score:flags.8?true drop_author:flags.11?true drop_media_captions:flags.12?true noforwards:flags.14?true allow_paid_floodskip:flags.19?true from_peer:InputPeer id:Vector<int> random_id:Vector<long> to_peer:InputPeer top_msg_id:flags.9?int reply_to:flags.22?InputReplyTo schedule_date:flags.10?int schedule_repeat_period:flags.24?int send_as:flags.13?InputPeer quick_reply_shortcut:flags.17?InputQuickReplyShortcut effect:flags.18?long video_timestamp:flags.20?int allow_paid_stars:flags.21?long suggested_post:flags.23?SuggestedPost = Updates;
 messages.reportSpam#cf1592db peer:InputPeer = Bool;
@@ -2495,12 +2528,12 @@ messages.getInlineBotResults#514e999d flags:# bot:InputUser peer:InputPeer geo_p
 messages.setInlineBotResults#bb12a419 flags:# gallery:flags.0?true private:flags.1?true query_id:long results:Vector<InputBotInlineResult> cache_time:int next_offset:flags.2?string switch_pm:flags.3?InlineBotSwitchPM switch_webview:flags.4?InlineBotWebView = Bool;
 messages.sendInlineBotResult#c0cf7646 flags:# silent:flags.5?true background:flags.6?true clear_draft:flags.7?true hide_via:flags.11?true peer:InputPeer reply_to:flags.0?InputReplyTo random_id:long query_id:long id:string schedule_date:flags.10?int send_as:flags.13?InputPeer quick_reply_shortcut:flags.17?InputQuickReplyShortcut allow_paid_stars:flags.21?long = Updates;
 messages.getMessageEditData#fda68d36 peer:InputPeer id:int = messages.MessageEditData;
-messages.editMessage#51e842e1 flags:# no_webpage:flags.1?true invert_media:flags.16?true peer:InputPeer id:int message:flags.11?string media:flags.14?InputMedia reply_markup:flags.2?ReplyMarkup entities:flags.3?Vector<MessageEntity> schedule_date:flags.15?int schedule_repeat_period:flags.18?int quick_reply_shortcut_id:flags.17?int = Updates;
-messages.editInlineBotMessage#83557dba flags:# no_webpage:flags.1?true invert_media:flags.16?true id:InputBotInlineMessageID message:flags.11?string media:flags.14?InputMedia reply_markup:flags.2?ReplyMarkup entities:flags.3?Vector<MessageEntity> = Bool;
+messages.editMessage#b106e66c flags:# no_webpage:flags.1?true invert_media:flags.16?true peer:InputPeer id:int message:flags.11?string media:flags.14?InputMedia reply_markup:flags.2?ReplyMarkup entities:flags.3?Vector<MessageEntity> schedule_date:flags.15?int schedule_repeat_period:flags.18?int quick_reply_shortcut_id:flags.17?int rich_message:flags.23?InputRichMessage = Updates;
+messages.editInlineBotMessage#a423bb51 flags:# no_webpage:flags.1?true invert_media:flags.16?true id:InputBotInlineMessageID message:flags.11?string media:flags.14?InputMedia reply_markup:flags.2?ReplyMarkup entities:flags.3?Vector<MessageEntity> rich_message:flags.23?InputRichMessage = Bool;
 messages.getBotCallbackAnswer#9342ca07 flags:# game:flags.1?true peer:InputPeer msg_id:int data:flags.0?bytes password:flags.2?InputCheckPasswordSRP = messages.BotCallbackAnswer;
 messages.setBotCallbackAnswer#d58f130a flags:# alert:flags.1?true query_id:long message:flags.0?string url:flags.2?string cache_time:int = Bool;
 messages.getPeerDialogs#e470bcfd peers:Vector<InputDialogPeer> = messages.PeerDialogs;
-messages.saveDraft#54ae308e flags:# no_webpage:flags.1?true invert_media:flags.6?true reply_to:flags.4?InputReplyTo peer:InputPeer message:string entities:flags.3?Vector<MessageEntity> media:flags.5?InputMedia effect:flags.7?long suggested_post:flags.8?SuggestedPost = Bool;
+messages.saveDraft#ad0fa15c flags:# no_webpage:flags.1?true invert_media:flags.6?true reply_to:flags.4?InputReplyTo peer:InputPeer message:string entities:flags.3?Vector<MessageEntity> media:flags.5?InputMedia effect:flags.7?long suggested_post:flags.8?SuggestedPost rich_message:flags.9?InputRichMessage = Bool;
 messages.getAllDrafts#6a3f8d65 = Updates;
 messages.getFeaturedStickers#64780b14 hash:long = messages.FeaturedStickers;
 messages.readFeaturedStickers#5b118126 id:Vector<long> = Bool;
@@ -2694,6 +2727,7 @@ messages.setBotGuestChatResult#b8f106e3 query_id:long result:InputBotInlineResul
 messages.deleteParticipantReactions#a0b80cf8 peer:InputPeer participant:InputPeer = Bool;
 messages.deleteParticipantReaction#e3b7f82c peer:InputPeer msg_id:int participant:InputPeer = Updates;
 messages.getPersonalChannelHistory#55fb0996 user_id:InputUser limit:int max_id:int min_id:int hash:long = messages.Messages;
+messages.getRichMessage#501569cf peer:InputPeer id:int = messages.Messages;
 
 updates.getState#edd4882a = updates.State;
 updates.getDifference#19c2f763 flags:# pts:int pts_limit:flags.1?int pts_total_limit:flags.0?int date:int qts:int qts_limit:flags.2?int = updates.Difference;
@@ -3056,4 +3090,4 @@ aicompose.getToneExample#d1b4ab14 tone:InputAiComposeTone num:int = AiComposeTon
 // invokeWithApnsSecretPrefix#0dae54f8 nonce:string secret:string = Error;
 // invokeWithReCaptchaPrefix#adbb0f94 token:string = Error;
 
-// LAYER 226
+// LAYER 227
